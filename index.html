@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sentinel | Judas Priest Tribute</title>
+    <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=New+Rocker&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* ESTILO GERAL */
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            background-image: 
+                linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.8)), 
+                url('fundo.jpeg');
+            background-size: cover;
+            background-position: center 20%; 
+            background-attachment: fixed;
+            color: #fff;
+            font-family: 'New Rocker', serif;
+            text-align: center;
+        }
+
+        /* CABEÇALHO */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+            border-bottom: 5px solid #d40000;
+        }
+
+        .logo-principal {
+            animation: float 4s ease-in-out infinite;
+            width: 100%;
+            max-width: 1080px;
+            height: auto;
+            filter: drop-shadow(0 0 25px #d40000);
+            margin-bottom: 10px; 
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        header h1 {
+            font-family: 'Metal Mania', cursive;
+            text-transform: uppercase;
+            font-size: 4.5rem;
+            letter-spacing: 2px;
+            margin: 0;
+            padding: 20px 0;
+            display: inline-block;
+            background: linear-gradient(to bottom, #ffffff 0%, #e0e0e0 40%, #1a1a1a 50%, #888888 55%, #ffffff 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(2px 2px 0px #d40000) drop-shadow(0 0 15px rgba(212, 0, 0, 0.6));
+        }
+
+        .intro-container {
+            max-width: 850px;
+            line-height: 1.6;
+            color: #eee;
+            font-size: 1.4rem;
+            text-shadow: 2px 2px 8px #000;
+            margin-top: 15px;
+        }
+
+        .highlight-origin { color: #d40000; font-weight: bold; }
+
+        /* SEÇÃO THE BAND */
+        .section-dark { padding: 60px 20px; }
+        .section-dark h2 {
+            font-family: 'Metal Mania', serif;
+            text-transform: uppercase;
+            font-size: 3.2rem;
+            margin-bottom: 30px;
+            background: linear-gradient(180deg, #4a0000 0%, #ff0000 45%, #ff9999 50%, #8b0000 55%, #d40000 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(3px 3px 5px rgba(0,0,0,0.9));
+        }
+
+        .lineup-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .artist-card { flex: 1; min-width: 250px; max-width: 280px; }
+
+        .metal-frame {
+            position: relative;
+            background: linear-gradient(135deg, #777 0%, #eee 45%, #444 50%, #888 55%, #333 100%);
+            padding: 8px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+            border-radius: 2px;
+            transition: transform 0.3s ease;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .artist-card .metal-frame { aspect-ratio: 3 / 4; }
+        .artist-card:hover .metal-frame { transform: scale(1.05); z-index: 5; }
+
+        .band-photo {
+            width: 100%; height: 100%; object-fit: cover;
+            filter: grayscale(100%); transition: 0.5s ease;
+        }
+        .artist-card:hover .band-photo { filter: grayscale(0%); }
+
+        .member-name { color: #d40000; font-weight: bold; display: block; font-size: 1.5rem; text-shadow: 2px 2px 4px #000; }
+        .member-instrument { color: #fff; font-size: 1.2rem; display: block; }
+
+        /* VÍDEOS (POSIÇÃO HORIZONTAL 16:9) */
+        .legacy-container {
+            max-width: 1100px;
+            margin: 30px auto;
+            background: rgba(10, 10, 10, 0.95); 
+            border: 1px solid #222;
+        }
+
+        .legacy-header {
+            background: rgba(21, 21, 21, 1);
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .legacy-header h2 { 
+            margin: 0; font-family: 'Metal Mania', cursive; color: #fff; letter-spacing: 2px; font-size: 1.8rem;
+        }
+
+        .legacy-content { padding: 25px; display: none; }
+
+        .video-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 20px;
+        }
+
+        .video-item { 
+            width: 100%; 
+            aspect-ratio: 16 / 9; 
+            background: #000; 
+            border: 1px solid #333;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        /* GALERIA DE FOTOS */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .photo-grid .metal-frame { aspect-ratio: 1 / 1; }
+        .photo-grid img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(30%); transition: 0.3s; }
+        .photo-grid img:hover { filter: grayscale(0%); }
+
+        /* RODAPÉ E BOTÕES */
+        .event-info-bottom {
+            background: rgba(0, 0, 0, 0.95);
+            padding: 60px 20px;
+            border-top: 2px solid #d40000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .btn-ritual {
+            display: flex; align-items: center; justify-content: center;
+            width: 100%; max-width: 350px; padding: 18px;
+            color: white; text-decoration: none; font-weight: bold;
+            text-transform: uppercase; border-radius: 50px; transition: 0.3s;
+            font-family: 'Roboto', sans-serif; gap: 10px; letter-spacing: 1px;
+        }
+
+        .btn-whatsapp { background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); }
+        .btn-instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fd5949 45%, #d6249f 60%, #285AEB 90%); }
+        .btn-ritual:hover { transform: scale(1.05); filter: brightness(1.2); box-shadow: 0 0 20px rgba(212, 0, 0, 0.4); }
+
+        footer { padding: 40px; color: #555; font-size: 0.8rem; background: #000; border-top: 1px solid #111; }
+
+        /* MOBILE */
+        @media (max-width: 600px) {
+            header h1 { font-size: 2.2rem; }
+            .section-dark h2 { font-size: 2.2rem; }
+            .video-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="logo.png" alt="Gods Of Metal" class="logo-principal">
+    <h1>The Sentinel - Judas Priest Tribute</h1>
+    <div class="intro-container">
+        <p>A <span class="highlight-origin">The Sentinel</span> nasceu em Uberlândia-MG em 2022 com a missão de prestar um tributo definitivo aos Deuses do Metal, o lendário <span class="highlight-origin">Judas Priest</span>.</p>
+        <p>Preparem-se para o Ataque Britânico!</p>
+    </div>
+</header>
+
+<section class="section-dark">
+    <h2>THE BAND</h2>
+    <div class="lineup-container">
+        <div class="artist-card">
+            <div class="metal-frame"><img src="elton.png" alt="Elton Magno" class="band-photo"></div>
+            <span class="member-name">Elton Magno</span>
+            <span class="member-instrument">Guitars</span>
+        </div>
+        <div class="artist-card">
+            <div class="metal-frame"><img src="thales.png" alt="Thales Valadão" class="band-photo"></div>
+            <span class="member-name">Thales Valadão</span>
+            <span class="member-instrument">Guitars</span>
+        </div>
+        <div class="artist-card">
+            <div class="metal-frame"><img src="lucas.png" alt="Lucas Rezende" class="band-photo"></div>
+            <span class="member-name">Lucas Rezende</span>
+            <span class="member-instrument">Vocals</span>
+        </div>
+        <div class="artist-card">
+            <div class="metal-frame"><img src="reinaldo.png" alt="Reinaldo Jr" class="band-photo"></div>
+            <span class="member-name">Reinaldo Jr</span>
+            <span class="member-instrument">Bass</span>
+        </div>
+        <div class="artist-card">
+            <div class="metal-frame"><img src="tati.png" alt="Tati Ribeiro" class="band-photo"></div>
+            <span class="member-name">Tati Ribeiro</span>
+            <span class="member-instrument">Drums</span>
+        </div>
+    </div>
+</section>
+
+<div class="legacy-container">
+    <div class="legacy-header" onclick="toggleSection('legacy-content', 'arrow1')">
+        <h2>VIDEOS</h2>
+        <span id="arrow1">▼</span>
+    </div>
+    <div id="legacy-content" class="legacy-content">
+        <div class="video-grid">
+            <iframe class="video-item" 
+                    src="https://www.youtube.com/embed/0mZbnyU4q7E" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen></iframe>
+
+            <iframe class="video-item" 
+                    src="https://www.youtube.com/embed/MXzifOfUq7k" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen></iframe>
+
+            <iframe class="video-item" 
+                    src="https://www.youtube.com/embed/8jIk5ysl4ws" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen></iframe>
+            
+            <iframe class="video-item" src="https://www.youtube.com/embed/" allowfullscreen></iframe>
+            <iframe class="video-item" src="https://www.youtube.com/embed/" allowfullscreen></iframe>
+            <iframe class="video-item" src="https://www.youtube.com/embed/" allowfullscreen></iframe>
+        </div>
+    </div>
+</div>
+
+<div class="legacy-container">
+    <div class="legacy-header" onclick="toggleSection('photo-gallery-content', 'arrow2')">
+        <h2>PICTURES</h2>
+        <span id="arrow2">▼</span>
+    </div>
+    <div id="photo-gallery-content" class="legacy-content">
+        <div class="photo-grid">
+            <div class="metal-frame"><img src="foto1.jpeg" alt="Foto 1"></div>
+            <div class="metal-frame"><img src="foto2.jpeg" alt="Foto 2"></div>
+            <div class="metal-frame"><img src="foto3.jpeg" alt="Foto 3"></div>
+            <div class="metal-frame"><img src="foto4.jpeg" alt="Foto 4"></div>
+            <div class="metal-frame"><img src="foto5.jpeg" alt="Foto 5"></div>
+            <div class="metal-frame"><img src="foto6.jpeg" alt="Foto 6"></div>
+            <div class="metal-frame"><img src="foto7.jpeg" alt="Foto 7"></div>
+            <div class="metal-frame"><img src="foto8.jpeg" alt="Foto 8"></div>
+        </div>
+    </div>
+</div>
+
+<section class="event-info-bottom">
+    <a href="https://wa.me/5534996566463" target="_blank" class="btn-ritual btn-whatsapp">
+        <i class="fab fa-whatsapp"></i> CONTACT FOR SHOWS
+    </a>
+    <a href="https://www.instagram.com/sentinel.judaspriest.cover/" target="_blank" class="btn-ritual btn-instagram">
+        <i class="fab fa-instagram"></i> FOLLOW US ON INSTAGRAM
+    </a>
+</section>
+
+<footer>
+    <p>The Sentinel - Judas Priest Tribute © Since 2022 | Uberlândia - MG</p>
+</footer>
+
+<script>
+    function toggleSection(id, arrowId) {
+        const content = document.getElementById(id);
+        const arrow = document.getElementById(arrowId);
+        if (content.style.display === "block") {
+            content.style.display = "none";
+            arrow.textContent = "▼";
+        } else {
+            content.style.display = "block";
+            arrow.textContent = "▲";
+        }
+    }
+</script>
+
+</body>
+</html>
